@@ -1,0 +1,22 @@
+<launch>
+    <!--node   pkg="tf2_ros"
+            type="static_transform_publisher"
+            name="laser_world" 
+            args="1 0 0.5 3.1413 0.78539 0 world laser" /-->
+
+    <node   pkg="rviz"
+            type="rviz"
+            name="rviz"
+            args="-d $(find transformacije)/vizualizacija_tf.rviz" />
+
+    <node   pkg="rosbag"
+            type="play" 
+            name="rbag_scan"
+            args="-l $(find transformacije)/laser_scan.bag" />
+
+    <node   pkg="transformacije"
+            type="global_pc.py" 
+            name="to_world"
+            output="screen" />
+
+</launch>
